@@ -1,13 +1,6 @@
 'use strict';
 
 window.onload = function() {
-
-    // https://css-tricks.com/snippets/javascript/shuffle-array/
-    function shuffle(o) {
-        for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-        return o;
-    };
-
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function() {
@@ -32,7 +25,7 @@ window.onload = function() {
             }
         }
     };
-
+    
     xhr.open("GET", "data.json", true);
     xhr.send();
 };
