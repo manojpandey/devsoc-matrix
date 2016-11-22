@@ -1,0 +1,13 @@
+@charset 'UTF-8';
+html,
+body {
+    background: linear-gradient(rgba(127, 185, 189, 0.85), rgba(228, 183, 137, 0.95), rgba(127, 185, 189, 0.85));
+    color: #fff;
+    height: 100%;
+    width: 100%;
+}
+
+.intro,
+footer {
+    padding: 50px 0;
+}
