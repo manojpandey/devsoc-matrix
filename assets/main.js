@@ -1,21 +1,34 @@
-$(function() {
-    'use strict';
+'use strict';
 
-    // https://css-tricks.com/snippets/javascript/shuffle-array/
+window.onload = function() {
+    var xhr = new XMLHttpRequest();
 
-    $.getJSON('data.json', function(data) {
-        var peeps = $('#peeps');
-        var keys = Object.keys(data);
-        keys.sort(function(a, b) {
-            return Math.random() - 0.5;
-        });
-        for (var id in keys) {
-            var name = data[keys[id]][0];
-            var url = data[keys[id]][1];
-            var a = $('<a/>')
-                .prop('href', "http://facebook.com/" + keys[id])
-                .append($('<img>').prop('src', url).prop('alt', name).prop('title', name))
-                .appendTo(peeps);
+    xhr.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            var peeps = document.querySelector('#peeps'),
+                data = JSON.parse(this.responseText),
+                keys = Object.keys(data);
+
+            keys.sort(function(a, b){
+                return Math.random() - 0.5;
+            });
+
+            for(var id in keys) {
+                var name = data[keys[id]][0],
+                    url = data[keys[id]][1];
+
+                var a = document.createElement('A'),
+                    img = document.createElement('IMG');
+                
+                a.setAttribute('href', 'https://facebook.com/' + keys[id]);
+                img.setAttribute('src', url);
+
+                a.appendChild(img);
+                peeps.appendChild(a);
+            }
         }
-    });
-});
+    };
+
+    xhr.open("GET", "data.json", true);
+    xhr.send();
+};
