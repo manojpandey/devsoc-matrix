@@ -22,6 +22,8 @@ window.onload = function() {
                 
                 a.setAttribute('href', 'https://facebook.com/' + keys[id]);
                 img.setAttribute('src', url);
+                img.setAttribute('alt', name);
+                img.setAttribute('title', name);
 
                 a.appendChild(img);
                 peeps.appendChild(a);
